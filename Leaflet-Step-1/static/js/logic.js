@@ -1,9 +1,10 @@
 var myMap = L.map('map', {
-    center: [37.0902, -95.7129],
-    zoom: 2
+    center: [0, 0],
+    zoom: 2,
+    layers: [quakeLayer]
 })
 
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+var streetLayer = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
     maxZoom: 18,
@@ -15,7 +16,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson'
 
 function markerSize(mag) {
-    return mag * 100;
+    return mag * 50000;
 }
 
 function markerColor(depth) {
@@ -45,7 +46,7 @@ d3.json(url).then(function(data) {
         var depth = feature.geometry.coordinates[2];
         console.log('magnitude:', magnitude);
         console.log('lat:', lat, 'long:', long);
-        console.log('depth', depth)
+        console.log('depth', depth);
         quakeMarkers.push(
             L.circle([lat, long], {
                 stroke: false,
@@ -53,15 +54,21 @@ d3.json(url).then(function(data) {
                 color: 'white',
                 fillColor: markerColor(depth),
                 radius: markerSize(magnitude)
-            }))
+            }).bindPopup(location + "<br> Magnitude:" + magnitude))
         }
-        if (lat) {
-            console.log(quakeMarkers)
-            var markers = L.marker([quakeMarkers]).addTo(myMap);
-            markers.bindPopup(location + "<br> Magnitude:" + magnitude);
-        }     
-    
-
+        // if (lat) {
+        //     console.log(quakeMarkers)
+        //     var markers = L.marker([quakeMarkers]).addTo(myMap);
+        //     markers.bindPopup(location + "<br> Magnitude:" + magnitude);
+        // }     
+    var quakeLayer = L.layerGroup(quakeMarkers);
+    var overlayMaps = {
+        Earthquakes: quakeLayer
+    }
+    var baseMaps = {
+        Street: streetLayer
+    }
+    L.control.layers(baseMaps, overlayMaps).addTo(myMap)
     // L.geoJson(data).addTo(myMap);
 
 });
