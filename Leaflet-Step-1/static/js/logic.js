@@ -19,47 +19,48 @@ function markerSize(mag) {
 }
 
 function markerColor(depth) {
-    switch (depth) {
-        case depth >90:
-            return 'red';
-        case 70 < depth <90 :
-            return 'orangered';
-        case 50 < depth <70:
-            return 'orange';
-        case 30 < depth < 50:
-            return 'gold';
-        case 10 < depth < 30:
-            return 'yellow';
-        case -10 < depth < 10:
-            return 'greenyellow'
-    }
-}
+    if (depth >90) {
+        return 'red'}
+    else if (depth >70) {
+        return 'orangered'}
+    else if (depth > 50) {
+        return 'orange'}
+    else if (depth > 30) {
+        return 'gold'}
+    else if (depth > 10) {
+        return 'yellow'}
+    else {return 'greenyellow'}
+    };
+
 d3.json(url).then(function(data) {
     console.log('data', data)
     var quakeMarkers = []
 
     for (i=0; i< data.features.length; i++) {
-        var feature = data.features[0];
+        var feature = data.features[i];
         var lat = feature.geometry.coordinates[1];
         var long = feature.geometry.coordinates[0];
         var magnitude = feature.properties.mag;
         var location = feature.properties.place;
-        console.log('magnitude:', magnitude)
-        console.log('lat:', lat, 'long:', long)
+        var depth = feature.geometry.coordinates[2];
+        console.log('magnitude:', magnitude);
+        console.log('lat:', lat, 'long:', long);
+        console.log('depth', depth)
         quakeMarkers.push(
             L.circle([lat, long], {
                 stroke: false,
                 fillOpacity: 0.75,
                 color: 'white',
-                fillColor: markerColor(feature.geometry.coordinates[2]),
+                fillColor: markerColor(depth),
                 radius: markerSize(magnitude)
             }))
-            
-        
-    }
-    // console.log(quakeMarkers)
-    // var markers = L.marker([quakeMarkers]).addTo(myMap);
-    //         markers.bindPopup(location + "<br> Magnitude:" + magnitude);
+        }
+        if (lat) {
+            console.log(quakeMarkers)
+            var markers = L.marker([quakeMarkers]).addTo(myMap);
+            markers.bindPopup(location + "<br> Magnitude:" + magnitude);
+        }     
+    
 
     // L.geoJson(data).addTo(myMap);
 
