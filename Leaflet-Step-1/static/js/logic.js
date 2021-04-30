@@ -1,7 +1,7 @@
+console.log('plate data', boundaries)
 var myMap = L.map('map', {
     center: [0, 0],
-    zoom: 2,
-    
+    zoom: 2    
 })
 
 var streetLayer = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -26,6 +26,11 @@ var sat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
     subdomains:['mt0','mt1','mt2','mt3']
 });
 
+var tectonic =  L.geoJson(boundaries, {
+    // Passing in our style object
+    // style: mapStyle
+  }).addTo(myMap);
+
 var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson'
 
 function markerSize(mag) {
@@ -47,6 +52,9 @@ function markerColor(depth) {
     };
 
 d3.json(url).then(function(data) {
+    // d3.json('data/tectonicplates/GeoJSON/PB2002_boundaries.json').then(function(plates){
+    //     console.log("plate data", plates);
+    
     console.log('data', data)
     var quakeMarkers = []
 
@@ -74,10 +82,12 @@ d3.json(url).then(function(data) {
         //     var markers = L.marker([quakeMarkers]).addTo(myMap);
         //     markers.bindPopup(location + "<br> Magnitude:" + magnitude);
         // }     
-    var quakeLayer = L.layerGroup(quakeMarkers);
+    var quakeLayer = L.layerGroup(quakeMarkers).addTo(myMap);
     var overlayMaps = {
-        Earthquakes: quakeLayer
+        Earthquakes: quakeLayer,
+        'Tectonic Plates': tectonic
     }
+
     var baseMaps = {
         Street: streetLayer, 
         Satellite: sat, 
@@ -110,6 +120,7 @@ d3.json(url).then(function(data) {
 
     legend.addTo(myMap);
 });
+// });
 
 //todo: create function to make map
 //create function to make markers
