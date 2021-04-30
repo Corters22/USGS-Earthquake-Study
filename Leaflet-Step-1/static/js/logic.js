@@ -13,15 +13,6 @@ var streetLayer = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
     accessToken: API_KEY
   }).addTo(myMap);
 
-var satellite = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/satellite-v11",
-    accessToken: API_KEY
-  }).addTo(myMap);
-
 var Stamen_TerrainBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	subdomains: 'abcd',
@@ -96,22 +87,24 @@ d3.json(url).then(function(data) {
         collapsed: false
     }).addTo(myMap)
     
-    var legend = L.control({ postion: 'bottomright'});
+    var legend = L.control({ postion: "bottomright"});
     legend.onAdd = function() {
-        var div = L.DomUtil.create('div', 'info legend');
+        var div = L.DomUtil.create("div", "info legend");
         var colors = ['greenyellow', 'yellow', 'gold', 'orange', 'orangered', 'red'];
         var limits = ['-10-10', '10-30', '30-50', '50-70', '70-90', '90+'];
         var labels = [];
 
-        var legendInfo = '<div class =\"labels\">' + '</div>';
-
+        
+        var legendInfo = "<h3>Earthquake <br> Depth</h3>";
+        
         div.innerHTML = legendInfo;
-
+        
         limits.forEach(function(limit, index) {
-            labels.push('<li style=\"background-color: ' + colors[index] + '\'>' + limits[index] + '</li>');
+            labels.push("<li style=\"background-color: " + colors[index] + "\"></li> " + limits[index] + "<br>");
         });
+        console.log(labels)
 
-        div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+        div.innerHTML += "<ul>" + labels.join(" ") + "</ul>";
         return div;
     };
 
