@@ -35,3 +35,31 @@ A. [Leaflet-Step-1](https://github.com/Corters22/leaflet-challenge/tree/main/Lea
         
       -[logic.js](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/js/logic.js)
 3. [index.html](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/index.html)
+
+## Final Results
+
+The final page has one map with three baselayers, street view, satellite view and terrain view. One top of these baselayers are two types of markers. First, is the location of the recorded earthquakes. They are designated by circles of different sizes and colors. The colors represent the depth of the earthquake and there is a legend to signify the colors and depths. The size of the circles represent the magnitude of the earthquake. The second marker is the boundaries of the tectonic plates. You can see that most of the earthquakes happen around and on the boundaries. 
+
+You can toggle each of these layers on and off from the legend at the top right corner. 
+
+## Screen shots
+
+Below are different screen shots of the final result. Enjoy.
+
+### Street View
+
+![street view](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/images/screenshot%20-%20street%20view.PNG)
+
+### Satellite View
+
+![satellite view](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/images/screenshot%20-%20satellite%20view.PNG)
+
+### Terrain View
+
+![terrain view](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/images/screenshot%20-%20terrain%20view.PNG)
+
+#### Instructions/Special Notes
+
+- Must be run with a local server
+- Multiple datasets available that are updated often (see data section)
+- Can add addtional layers and/or markers if want
