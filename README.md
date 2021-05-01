@@ -14,18 +14,24 @@ The USGS provides earthquake data in a number of different formats, updated ever
     
 ![geojson pic](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/images/screenshot%20-%20geojson.PNG)
 
-If you choose to pick a different data set, replace the url variable on line 34 in [logic.js](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/js/logic.js). The format of the geojson should be the same but make sure before running the code on a new dataset.
+If you choose to pick a different data set, replace the url variable on line 34 in [logic.js](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/js/logic.js). The format of the geojson should be the same but make sure before running the code on a new dataset. The tectonic plate boundaries can be found in the data directory. You can find that information and addtional information about the tectonic plates [here](https://github.com/fraxen/tectonicplates).
 
 ## Directories/Files
 
-    A. Leaflet-Step-1
-        1. Images
-            **includes screen shots**
-        2. Static
-            a. css
-                -style.css
-            b. data
-                -PB2002_boundaries.json
-            c. js
-                -logic.js
-        4. index.html
+A. [Leaflet-Step-1](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1)
+1. [Images](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1/images)
+***includes screen shots***
+2. [Static](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1/static)
+    
+    a. [css](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1/static/css)
+        
+      -[style.css](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/css/style.css)
+    
+    b. [data](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1/static/data)
+        
+      -[PB2002_boundaries.json](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/data/PB2002_boundaries.json)
+    
+    c. [js](https://github.com/Corters22/leaflet-challenge/tree/main/Leaflet-Step-1/static/js)
+        
+      -[logic.js](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/static/js/logic.js)
+3. [index.html](https://github.com/Corters22/leaflet-challenge/blob/main/Leaflet-Step-1/index.html)
